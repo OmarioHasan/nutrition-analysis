@@ -1,0 +1,31 @@
+/* Colors */
+:root {
+  --black: #333;
+  --green: #7aca25;
+  --green-dark: #72bc22;
+  --gray: #f8f8f8;
+  --gray-dark: #ccc;
+}
+
+/* Reset & Initiate Styles */
+body {
+  font-family: sans-serif;
+  color: var(--black);
+}
+
+* {
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+button {
+  border-radius: 2px;
+  cursor: pointer;
+}

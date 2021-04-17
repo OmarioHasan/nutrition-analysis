@@ -1,0 +1,121 @@
+<div id="summary-container">
+  <div>
+    <div id="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Food</th>
+            <th>Calories</th>
+            <th>Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of analysis.ingredients">
+            <ng-container *ngFor="let itemParsed of item.parsed">
+              <tr>
+                <th>{{ itemParsed.quantity }}</th>
+                <th>{{ itemParsed.measure }}</th>
+                <th>{{ itemParsed.foodMatch }}</th>
+                <th>
+                  {{
+                    itemParsed.nutrients.ENERC_KCAL.quantity | number: "0.1-1"
+                  }}
+                  kcal
+                </th>
+                <th>{{ itemParsed.weight | number: "0.1-1" }} g</th>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <button type="button" *ngIf="!showFacts" (click)="showFacts = true">
+      Total Nutrition
+    </button>
+    <!-- Total  Nutrition -->
+    <div id="performance-facts" [class.show]="showFacts">
+      <div>
+        <h1>Nutrition Facts</h1>
+      </div>
+      <ul [@listAnimation]="showFacts">
+        <li>
+          Calories: <span>{{ analysis.calories }}</span>
+        </li>
+        <li>
+          Total Fat:
+          {{ analysis.totalNutrients.FAT.quantity | number: "0.0-1" }} g
+          <span
+            >{{ analysis.totalDaily.FAT.quantity | number: "1.0-0" }} %</span
+          >
+        </li>
+        <li>
+          Cholesterol:
+          {{ analysis.totalNutrients.CHOLE.quantity | number: "0.0-1" }} mg
+          <span
+            >{{ analysis.totalDaily.CHOLE.quantity | number: "1.0-0" }} %</span
+          >
+        </li>
+        <li>
+          Sodium: {{ analysis.totalNutrients.NA.quantity | number: "0.0-1" }} mg
+          <span>{{ analysis.totalDaily.NA.quantity | number: "1.0-0" }} %</span>
+        </li>
+        <li>
+          Total Carbohydrate:
+          {{ analysis.totalNutrients.CHOCDF.quantity | number: "0.0-1" }} g
+          <span
+            >{{ analysis.totalDaily.CHOCDF.quantity | number: "1.0-0" }} %</span
+          >
+        </li>
+        <li>
+          Dietary Fiber:
+          {{ analysis.totalNutrients.FIBTG.quantity | number: "0.0-1" }} g
+          <span
+            >{{ analysis.totalDaily.FIBTG.quantity | number: "1.0-0" }} %</span
+          >
+        </li>
+        <li>
+          Total Sugars:
+          {{ analysis.totalNutrients.SUGAR.quantity | number: "0.0-1" }} g
+        </li>
+        <li>
+          Protein:
+          {{ analysis.totalNutrients.PROCNT.quantity | number: "0.0-1" }} g
+          <span
+            >{{ analysis.totalDaily.PROCNT.quantity | number: "1.0-0" }} %</span
+          >
+        </li>
+        <li>
+          {{ analysis.totalNutrients.VITD.label }}:
+          {{ analysis.totalNutrients.VITD.quantity | number: "0.0-1" }} µg
+
+          <span
+            >{{ analysis.totalDaily.VITD.quantity | number: "1.0-0" }} %</span
+          >
+        </li>
+        <li>
+          Calcium:
+          {{ analysis.totalNutrients.CA.quantity | number: "0.0-1" }} mg
+
+          <span>{{ analysis.totalDaily.CA.quantity | number: "1.0-0" }} %</span>
+        </li>
+
+        <li>
+          Iron: {{ analysis.totalNutrients.FE.quantity | number: "0.0-1" }} mg
+
+          <span>{{ analysis.totalDaily.FE.quantity | number: "1.0-0" }} %</span>
+        </li>
+
+        <li>
+          Potassium:
+          {{ analysis.totalNutrients.K.quantity | number: "0.0-1" }} mg
+
+          <span>{{ analysis.totalDaily.K.quantity | number: "1.0-0" }} %</span>
+        </li>
+      </ul>
+
+      <p>*Percent Daily Values are based on a 2000 calorie diet</p>
+    </div>
+  </div>
+</div>

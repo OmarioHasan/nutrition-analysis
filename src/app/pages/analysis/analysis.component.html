@@ -1,0 +1,35 @@
+<div>
+  <form
+    action=""
+    [formGroup]="ingredientsForm"
+    (ngSubmit)="analyseIngredients()"
+  >
+    <h1>Nutrition Analysis</h1>
+    <p>
+      Enter an ingredient list for what you are cooking, <br />
+      like <span>"1 cup rice, 10 oz chickpeas"</span>, etc.<br />Enter each
+      ingredient on a new line.
+    </p>
+    <textarea
+      formControlName="ingredients"
+      class="form-control analyze"
+      name="ingr"
+      placeholder="For example:
+1 cup orange juice
+3 tablespoons olive oil
+2 carrots"
+    ></textarea>
+    <button [disabled]="ingredientsForm.invalid">
+      <ng-container *ngIf="!isLoading; else loading"> Analyse </ng-container>
+    </button>
+    <p *ngIf="worngIngredients" class="worng-ingredients">
+      We cannot calculate the nutrition for some ingredients. Please check the
+      ingredient spelling or if you have entered a quantities for the
+      ingredients.
+    </p>
+  </form>
+</div>
+
+<ng-template #loading>
+  <span></span>
+</ng-template>
